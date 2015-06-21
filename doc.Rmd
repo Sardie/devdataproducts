@@ -1,0 +1,19 @@
+---
+title: "doc"
+output: html_document
+---
+
+This projects visualize the data from the `San Francisco Crime Classification` competition on Kaggle:
+https://www.kaggle.com/c/sf-crime
+
+On the left side, you can see the UI panel. You can filter by all variables that you see there.
+
+Last option is "Color by:", it will split the viewed data by that variable and will display
+each level with distinct color. If there are more than 8 levels to show, it will show only top7 levels
+and it will merge other levels to "Other" level.
+
+In the centre you can see a map with the crimes colored by the variable you selected. Only subset
+with max 1000 crimes is showed.
+
+At the bottom you can see time series data. Per each week you can see the number of crimes that satisfies
+the filter criteria.
