@@ -1,0 +1,51 @@
+San Francisco Crime Classification visualization
+===================
+author: Vladimir Tomecek
+date: June 21, 2015
+
+Data
+===================
+
+- data from Kaggle competition
+- https://www.kaggle.com/c/sf-crime
+- SF OpenData 
+- https://data.sfgov.org/
+- 808049 crimes
+- 39 categories
+- 10 districts
+- 12 years
+
+
+UI
+===================
+
+Filter and color by:
+- Category
+- Description
+- Day of Week
+- District
+- Resolution
+- Part of Day
+
+
+Shows data on map ...
+===================
+```{r echo=FALSE}
+load("sf-crime/data.RData")
+library(dplyr)
+library(ggmap)
+```
+
+```{r echo=FALSE}
+ggmap(map, darken=c(0.5,"black")) +
+    geom_point(aes(x=X, y=Y, color=PartOfDay), size=2, data=sample_n(data,1000)) +
+    scale_color_brewer(type="qual", palette = 1)
+```
+
+... and time series plot
+===================
+```{r echo=FALSE}
+d <- data %>% group_by(Week,PartOfDay) %>% dplyr::summarise(n=n())
+ggplot(aes(x=Week, y=n, color=PartOfDay), data=d) + geom_line() +
+    scale_color_brewer(type="qual", palette = 1)
+```
